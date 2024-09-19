@@ -9,6 +9,33 @@ Deploying application in AWS EKS
 5.	Create the node group.
 6.	Apply the deployment.yaml kubectl config.
 
+**Steps to load balance (internet facing) the above application**
+Tag the public subnets with Tag name: kubernetes.io/role/elb; Tag value: 1.
+Create IAM OIDC identity provider for your cluster.
+Create load balancer controller policy and load balancer trust policy.
+Create load balancer controller role.
+Create service account.
+Add eks-charts helm repository and update.
+Install load balancer controller using helm.
+Apply the ingress.yaml kubectl config.
+
+**Some helpful commands**
+To set kube config context
+aws eks update-kubeconfig --region us-east-1 --name clusterName
+
+To apply kubectl config
+kubectl apply -f config.yaml
+
+Add helm repo
+helm repo add eks https://aws.github.io/eks-charts
+
+helm install load balancer
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller
+-n kube-system
+--set clusterName=clusterName
+--set serviceAccount.create=false
+--set serviceAccount.name=aws-load-balancer-controller
+
 
 <img width="895" alt="image" src="https://github.com/user-attachments/assets/3c33fb69-a441-4f79-ab6c-786400324d7a">
 

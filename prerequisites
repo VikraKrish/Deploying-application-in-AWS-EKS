@@ -1,3 +1,5 @@
-Kubectl
-AWS CLI
-Helm Charts
+kubectl – A command line tool for working with Kubernetes clusters. 
+
+AWS CLI – A command line tool for working with AWS services, including Amazon EKS. 
+
+Helm Charts - A Helm chart is a set of YAML manifests and templates that describes Kubernetes resources (deployment, service, ingress) and defined configurations needed for the Kubernetes application
